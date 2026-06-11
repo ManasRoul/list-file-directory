@@ -1,0 +1,101 @@
+FILE LISTING SCRIPT - USAGE EXAMPLES
+=====================================
+
+HOW IT WORKS:
+-------------
+The script scans ALL files recursively from a starting location.
+
+1. Run in a DIRECTORY → Scans that directory and all subdirectories
+2. Run in a DRIVE root → Scans the ENTIRE drive
+
+
+SETUP (Do this once):
+---------------------
+cd /Users/manas_roul@optum.com/Downloads/checking
+python3 -m venv venv
+source venv/bin/activate
+pip install pandas openpyxl
+
+
+EVERY TIME YOU USE IT:
+----------------------
+# First activate the virtual environment:
+source venv/bin/activate
+
+# Then run the script with your desired options
+
+
+METHOD 1: Scan from WHERE YOU ARE
+----------------------------------
+# Navigate to any directory first
+cd ~/Downloads
+python /Users/manas_roul@optum.com/Downloads/checking/script/list.py
+
+# This will create "file_list.xlsx" in ~/Downloads with all files found
+
+
+METHOD 2: Scan a SPECIFIC LOCATION (most common)
+-------------------------------------------------
+# Stay wherever you are, specify the target directory
+python script/list.py -d ~/Downloads -o downloads_files.xlsx
+python script/list.py -d ~/Documents -o documents_files.xlsx
+python script/list.py -d ~/Desktop -o desktop_files.xlsx
+
+
+METHOD 3: Scan ENTIRE DRIVE
+----------------------------
+# Scan external USB drive
+python script/list.py -d /Volumes/MyUSB -o usb_inventory.xlsx
+
+# Scan external hard drive
+python script/list.py -d /Volumes/Backup2024 -o backup_drive.xlsx
+
+# Scan main system (⚠️ VERY SLOW - could take hours)
+python script/list.py -d / -o entire_system.xlsx
+
+
+PRACTICAL EXAMPLES:
+-------------------
+
+1. "What files are in my Downloads?"
+   → python script/list.py -d ~/Downloads -o downloads.xlsx
+
+2. "Inventory my external drive"
+   → python script/list.py -d /Volumes/MyDrive -o mydrive_inventory.xlsx
+
+3. "List everything in this folder" (when you're already in the folder)
+   → python script/list.py
+
+4. "Scan my project but skip node_modules"
+   → python script/list.py -d ~/Projects/MyApp -e node_modules .git dist -o myapp.xlsx
+
+5. "Find all files in my home directory"
+   → python script/list.py -d ~ -o my_files.xlsx
+
+
+UNDERSTANDING THE OUTPUT:
+-------------------------
+The Excel file will have 3 sheets:
+
+1. All Files - Complete list with:
+   - File name, extension, full path
+   - File size (bytes and readable)
+   - Modified and created dates
+
+2. Summary - Quick stats:
+   - Total files found
+   - Total size
+   - Number of different file types
+
+3. Extension Summary - Grouped by file type:
+   - .pdf, .jpg, .docx, etc.
+   - Count and total size for each type
+
+
+TIPS:
+-----
+• Always activate the virtual environment first (source venv/bin/activate)
+• Use full paths or ~ for home directory
+• Scanning large drives can take time - be patient
+• Check the "Extension Summary" sheet to see file type breakdown
+• Use Excel filters on "All Files" sheet to find specific files
