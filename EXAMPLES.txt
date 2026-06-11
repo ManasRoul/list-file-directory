@@ -29,7 +29,7 @@ METHOD 1: Scan from WHERE YOU ARE
 ----------------------------------
 # Navigate to any directory first
 cd ~/Downloads
-python /Users/manas_roul@optum.com/Downloads/checking/script/list.py
+python /Users/manas_roul/Downloads/checking/script/list.py
 
 # This will create "file_list.xlsx" in ~/Downloads with all files found
 
